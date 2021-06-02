@@ -1,0 +1,90 @@
+﻿@using TourSnapProjects.Models.Request;
+@using TourSnapModels.Models.Data;
+
+@{
+    List<RequestModel> Items = (this.ViewBag.RequestItems == null) ? new List<RequestModel>() : this.ViewBag.RequestItems;
+
+    List<RequestState> RequestStates = (this.ViewBag.RequestStates == null) ? new List<RequestState>() : this.ViewBag.RequestStates;
+
+    Int32 Page = (this.ViewBag.ActivePage == null) ? 0 : this.ViewBag.ActivePage;
+    Int32 MaxPage = (this.ViewBag.MaxPage == null) ? 0 : this.ViewBag.MaxPage;
+}
+
+<div class="items-list requests manage">
+    <h2>Все заявки</h2>
+    <div class="data">
+        <table>
+            <tr>
+                <th class="fill"></th>
+                <th class="id">№</th>
+                <th class="tour">Название тура</th>
+                <th class="date">Дата заявки</th>
+                <th class="price">Цена заявки</th>
+                <th class="state">Состояние заявки</th>
+                <th class="fill"></th>
+            </tr>
+            @foreach(var Item in Items)
+            {
+                <tr>
+                    <td class="fill"></td>
+                    <td class="id">@Item.Index</td>
+                    <td class="tour">
+                        <a href="/Tours/Get/@Item.TourID">
+                            @Item.Tour
+                            @if(Item.IsFire)
+                            {
+                                <i class="fab fa-gripfire"></i>
+                            }
+                        </a>
+                    </td>
+                    <td class="date">@Item.Date</td>
+                    <td class="price">@Item.TourPrice бел.руб.</td>
+                    <td class="state">
+                        @if(Item.StateID == 0)
+                        {
+                            <select class="form-control" id="RequestState_@Item.ID" onchange="setRequestState(@Item.ID)">
+                                @foreach(var State in RequestStates)
+                                {
+                                    if(Item.StateID == State.ID)
+                                    {
+                                        <option value="@State.ID" selected>@State.Title</option>
+                                    } else
+                                    {
+                                        <option value="@State.ID">@State.Title</option>
+                                    }
+                                }
+                            </select>
+                        } else
+                        {
+                            @Item.State
+                        }
+                    </td>
+                    <td class="fill"></td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div class="pagination">
+        <div class="buttons">
+            @if(Page > 0)
+            {
+                <button onclick="requestTo('/Request/Manage')">В начало</button>
+                <button onclick="requestTo('/Request/Manage', @(Page - 1))">Предыдущая</button>
+            } else
+            {
+                <button class="disabled">В начало</button>
+                <button class="disabled">Предыдущая</button>
+            }
+            @if(Page < MaxPage)
+            {
+                <button onclick="requestTo('/Request/Manage', @(Page + 1))">Следующая</button>
+                <button onclick="requestTo('/Request/Manage', @MaxPage">В конец</button>
+            } else
+            {
+                <button class="disabled">Следующая</button>
+                <button class="disabled">В конец</button>
+            }
+        </div>
+    </div>
+</div>

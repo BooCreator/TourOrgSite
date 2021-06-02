@@ -1,0 +1,59 @@
+﻿/* -------------------------------- basic */
+
+/* @media (max-width: 575.98px) {*/
+/* @media (max-width: 767.98px) {*/
+/* @media (max-width: 991.98px) {*/
+/* @media (max-width: 1199.98px) {*/
+
+.showed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #125385f1;
+    opacity: 0;
+    transition-duration: 0.4s;
+    transition-property: opacity;
+    z-index: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+    .showed.show {
+        opacity: 1;
+        z-index: 1500;
+    }
+
+/* -------------------------------- login */
+
+    .zajavka {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+        .zajavka .title {
+            display: flex;
+            justify-content: space-between;
+        }
+    
+            .zajavka .title img {
+                max-height: 32px;
+            }
+
+
+/* -------------------------------- lightbox */
+
+.lightbox .title {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .lightbox .title img {
+        max-height: 32px;
+    }
+
+#lightbox_image {
+    border-radius: .25rem;
+    width: 100%;
+}

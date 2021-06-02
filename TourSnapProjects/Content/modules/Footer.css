@@ -1,0 +1,144 @@
+﻿/* -------------------------------- footer */
+
+/* @media (max-width: 575.98px) {*/
+/* @media (max-width: 767.98px) {*/
+/* @media (max-width: 991.98px) {*/
+/* @media (max-width: 1199.98px) {*/
+
+footer {
+    display: flex;
+    flex-direction: column;
+    background-color: #1c7dc7;
+    border-style: solid none none none;
+    border-width: 4px;
+    border-color: #134f7d;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+}
+
+    footer .content {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        footer .content>div {
+            width: 50%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+            footer .content>div p {
+                padding: 0;
+                margin: 0;
+            }
+            footer .content>div .title {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            footer .content>div .data {
+                display: flex;
+                flex-direction: column;
+                border-style: solid none none none;
+                border-width: 4px;
+                border-color: #134f7d;
+                padding-top: 10px;
+            }
+
+            footer .content>div .data a {
+                color: white;
+                text-decoration: none;
+            }
+
+                footer .content>div .data a:hover {
+                    font-weight: bold;
+                }
+
+                footer .content>div .data .social {
+                    display: flex;
+                    justify-content: flex-start;
+                }
+
+                footer .content>div .data .social svg {
+                    height: 30px;
+                    width: 30px;
+                    padding: 4px;
+                    margin-right: 4px;
+                    background-image: -webkit-linear-gradient( 135deg, #ffda00, #ff7700 100% );
+                    transition-duration: .2s;
+                    transition-property: transform;
+                    border-radius: .25rem;
+                    -webkit-border-radius: .25rem;
+                    -moz-border-radius: .25rem;
+                    -ms-border-radius: .25rem;
+                    -o-border-radius: .25rem;
+                }
+
+                footer .content>div .data .social a:hover svg {
+                    background-color: #ffffffaa;
+                    transform: scale(1.1);
+                    -webkit-transform: scale(1.1);
+                    -moz-transform: scale(1.1);
+                    -ms-transform: scale(1.1);
+                    -o-transform: scale(1.1);
+                }
+
+                footer .content>div .data .grid {
+                    display: flex;
+                    align-items: flex-start;
+                    flex-wrap: wrap;
+                }
+
+                footer .content>div .data .grid img {
+                    height: 100px;
+                    padding: 4px;
+                    transition-duration: .2s;
+                    transition-property: transform;
+                    border-radius: .25rem;
+                    -webkit-border-radius: .25rem;
+                    -moz-border-radius: .25rem;
+                    -ms-border-radius: .25rem;
+                    -o-border-radius: .25rem;
+                }
+
+                footer .content>div .data .grid a:hover img {
+                    background-color: #ffffffaa;
+                    transform: scale(1.1);
+                    -webkit-transform: scale(1.1);
+                    -moz-transform: scale(1.1);
+                    -ms-transform: scale(1.1);
+                    -o-transform: scale(1.1);
+                }
+            
+    footer h2 {
+        font-size: 18px;
+    }
+
+@media screen and (min-width: 610px) {
+
+    footer .content>div {
+        width: 33%;
+    }
+
+    footer .content .partners {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 991.98px) {
+
+    footer .content {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    footer .content>div {
+        width: 25%;
+    }
+
+    footer .content .partners {
+        width: 25%;
+    }
+}

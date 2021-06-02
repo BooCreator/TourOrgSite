@@ -1,0 +1,223 @@
+﻿@using TourSnapModels.Models.Data;
+@using TourSnapProjects.Models.PublicModels;
+@using TourSnapProjects.Models.Find;
+
+@{
+    MenuTypes MenuType = (this.ViewBag.MenuType == null) ? MenuTypes.None : this.ViewBag.MenuType;
+    Int32 Page = (this.ViewBag.ActivePage == null) ? 0 : this.ViewBag.ActivePage;
+
+    List<Country> Countries = (this.ViewBag.Countries == null) ? new List<Country>() : this.ViewBag.Countries;
+    List<Resort> Resorts = (this.ViewBag.Resorts == null) ? new List<Resort>() : this.ViewBag.Resorts;
+    List<OtelCategory> Categories = (this.ViewBag.Categories == null) ? new List<OtelCategory>() : this.ViewBag.Categories;
+    List<OtelEating> Eatings = (this.ViewBag.Eatings == null) ? new List<OtelEating>() : this.ViewBag.Eatings;
+    List<Otel> Hotels = (this.ViewBag.Hotels == null) ? new List<Otel>() : this.ViewBag.Hotels;
+
+    ResortFindModel ResortFind = (this.ViewBag.ResortFindModel == null) ? new ResortFindModel() : this.ViewBag.ResortFindModel;
+    MainTourFindModel MainFindModel = (this.ViewBag.MainTourFindModel == null) ? new MainTourFindModel() : this.ViewBag.MainTourFindModel;
+}
+
+<div class="items-list">
+    @if(MenuType != MenuTypes.None)
+    {
+        <div class="find-menu">
+            @if(MenuType == MenuTypes.Resort)
+            {
+                <div class="find main">
+                    <div class="item">
+                        <p style="padding-left: 24px">Страна</p>
+                    </div>
+                    <div class="item">
+                        @if(ResortFind.Country == -1)
+                        {
+                            <button class="active">Любая</button>
+                        } else
+                        {
+                            <button onclick="resortToVal('/Home/Resorts', @Page, -1)">Любая</button>
+                        }
+                    </div>
+                    @foreach(var Country in Countries)
+                    {
+                        <div class="item">
+                            @if(ResortFind.Country == Country.ID)
+                            {
+                                <button class="active">@Country.Name</button>
+                            } else
+                            {
+                                <button onclick="resortToVal('/Home/Resorts', @Page, @Country.ID)">@Country.Name</button>
+                            }
+                        </div>
+                    }
+                </div>
+            } else
+            {
+                <div class="find main">
+                    <div class="item">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" id="main_country" data-toggle="dropdown">
+                                <div class="data">
+                                    <p class="title">Страна</p>
+                                    @if(MainFindModel?.Country > -1)
+                                    {
+                                        <p class="value" value="@MainFindModel.Country">@Countries.Find(x => x.ID == MainFindModel.Country).Name</p>
+                                    } else
+                                    {
+                                        <p class="value" value="-1">Любая</p>
+                                    }
+                                </div>
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="main_country">
+                                <button class="dropdown-item" onclick="setFindItem('main_country', -1, 'Любая', updMainResort)">Любая</button>
+
+                                @foreach(var Country in Countries)
+                                {
+                                    <button class="dropdown-item" onclick="setFindItem('main_country', @Country.ID, '@Country.Name', updMainResort)">@Country.Name</button>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" id="main_resort" data-toggle="dropdown">
+                                <div class="data">
+                                    <p class="title">Курорт</p>
+                                    @if(MainFindModel?.Resort > -1)
+                                    {
+                                        <p class="value" value="@MainFindModel.Resort">@Resorts.Find(x => x.ID == MainFindModel.Resort).Name</p>
+                                    } else
+                                    {
+                                        <p class="value" value="-1">Любой</p>
+                                    }
+                                </div>
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="main_resort">
+                                <button class="dropdown-item" onclick="setFindItem('main_resort', -1, 'Любой', updMainHotel)">Любой</button>
+
+                                @foreach(var Resort in Resorts)
+                                {
+                                    <button class="dropdown-item" onclick="setFindItem('main_resort', @Resort.ID, '@Resort.Name', updMainHotel)">@Resort.Name</button>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    @if(MenuType != MenuTypes.Manager)
+                    {
+                        <div class="item">
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" id="main_category" data-toggle="dropdown">
+                                    <div class="data">
+                                        <p class="title">Категория отеля</p>
+                                        @if(MainFindModel?.Category > -1)
+                                        {
+                                            <p class="value" value="@MainFindModel.Category">@Categories.Find(x => x.ID == MainFindModel.Category).Title</p>
+                                        } else
+                                        {
+                                            <p class="value" value="-1">Любая</p>
+                                        }
+                                    </div>
+                                </button>
+
+                                <div class="dropdown-menu" aria-labelledby="main_category">
+                                    <button class="dropdown-item" onclick="setFindItem('main_category', -1, 'Любая', updMainHotel)">Любая</button>
+
+                                    @foreach(var Category in Categories)
+                                    {
+                                        <button class="dropdown-item" onclick="setFindItem('main_category', @Category.ID, '@Category.Title', updMainHotel)">@Category.Title</button>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" id="main_eatings" data-toggle="dropdown">
+                                    <div class="data">
+                                        <p class="title">Категория питания</p>
+                                        @if(MainFindModel?.Eating > -1)
+                                        {
+                                            <p class="value" value="@MainFindModel.Eating">@Eatings.Find(x => x.ID == MainFindModel.Eating).Title</p>
+                                        } else
+                                        {
+                                            <p class="value" value="-1">Любая</p>
+                                        }
+                                    </div>
+                                </button>
+
+                                <div class="dropdown-menu" aria-labelledby="main_eatings">
+                                    <button class="dropdown-item" onclick="setFindItem('main_eatings', -1, 'Любая', updMainHotel)">Любая</button>
+
+                                    @foreach(var Eating in Eatings)
+                                    {
+                                        <button class="dropdown-item" onclick="setFindItem('main_eatings', @Eating.ID, '@Eating.Title', updMainHotel)">@Eating.Title</button>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if(MenuType == MenuTypes.Main || MenuType == MenuTypes.Manager)
+                    {
+                        <div class="item">
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" id="main_hotels" data-toggle="dropdown">
+                                    <div class="data">
+                                        <p class="title">Отель</p>
+                                        @if(MainFindModel?.Hotel > -1)
+                                        {
+                                            <p class="value" value="@MainFindModel.Hotel">@Hotels.Find(x => x.ID == MainFindModel.Hotel).Name</p>
+                                        } else
+                                        {
+                                            <p class="value" value="-1">Любой</p>
+                                        }
+                                    </div>
+                                </button>
+
+                                <div class="dropdown-menu" aria-labelledby="main_hotels">
+                                    <button class="dropdown-item" onclick="setFindItem('main_hotels', -1, 'Любой')">Любой</button>
+
+                                    @foreach(var Hotel in Hotels)
+                                    {
+                                        <button class="dropdown-item" onclick="setFindItem('main_hotels', @Hotel.ID, '@Hotel.Name')">@Hotel.Name</button>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if(MenuType != MenuTypes.Manager)
+                    {
+                        <div class="item" style="padding: 0 12px;">
+                            @if(MainFindModel?.MaxPrice > 0)
+                            {
+                                <input type="number" class="form-control" id="main_price" placeholder="Максимальная цена..." value="@MainFindModel.MaxPrice">
+                            } else
+                            {
+                                <input type="number" class="form-control" id="main_price" placeholder="Максимальная цена...">
+                            }
+                        </div>
+                    }
+                    <div class="item">
+                        @switch(MenuType)
+                        {
+                            case MenuTypes.FireTour:
+                                <button onclick="mainTo('/Home/Actions/', @Page)">Поиск</button>
+                                break;
+                            case MenuTypes.Hotel:
+                                <button onclick="mainTo('/Home/Hotels/', @Page)">Поиск</button>
+                                break;
+                            case MenuTypes.Main:
+                                <button onclick="mainTo('/Home/Find/', @Page)">Поиск</button>
+                                break;
+                            case MenuTypes.Manager:
+                                <button onclick="requestTo('/Request/Manage/', @Page)">Фильтр</button>
+                                break;
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,101 @@
+﻿@using TourSnapModels.Models.Data;
+
+@{
+    Int32 UserID = (this.ViewBag.UserID == null) ? -1 : this.ViewBag.UserID;
+    Int32 UserRole = (this.ViewBag.UserRole == null) ? -1 : this.ViewBag.UserRole;
+    User User = this.ViewBag.User;
+}
+
+<div class="profile-body">
+    @if(User != null)
+    {
+        if(User.ID == UserID)
+        {
+            <div class="profile">
+                <div class="photo">
+                    <img src="~/Data/img/Profile.png">
+                </div>
+                @if(UserRole != Global.AdminRoleID)
+                {
+                    <div class="buttons">
+                        @if(UserRole == Global.ManagerRoleID)
+                        {
+                            <button onclick="location.href='/Request/Manage'">
+                                <i class="fas fa-list-alt"></i>
+                                Все заявки
+                            </button>
+
+                        } else
+                        {
+                            <button onclick="location.href='/Request/View'">
+                                <i class="fas fa-list-alt"></i>
+                                Мои заявки
+                            </button>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="data">
+                <div class="line" id="profile_name">
+                    <div class="title">ФИО:</div>
+                    <div class="value">@User.Name</div>
+                    <div class="edit">
+                        <button class="edit-on" onclick="edit('profile_name', 'Name', 'text')"><i class="fas fa-pen"></i></button>
+                    </div>
+                </div>
+                <div class="line" id="profile_mail">
+                    <div class="title">E-mail:</div>
+                    <div class="value">@User.Mail</div>
+                    <div class="edit">
+                        <button class="edit-on" onclick="edit('profile_mail', 'Mail', 'mail')"><i class="fas fa-pen"></i></button>
+                    </div>
+                </div>
+                <div class="line" id="profile_phone">
+                    <div class="title">Телефон:</div>
+                    <div class="value">+375 @User.Phone</div>
+                    <div class="edit">
+                        <button class="edit-on" onclick="edit('profile_phone', 'Phone', 'phone')"><i class="fas fa-pen"></i></button>
+                    </div>
+                </div>
+                <div class="line" id="profile_password">
+                    <div class="title">Пароль:</div>
+                    <div class="value">*******</div>
+                    <div class="edit">
+                        <button class="edit-on" onclick="edit('profile_password', 'Password', 'password')"><i class="fas fa-pen"></i></button>
+                    </div>
+                </div>
+            </div>
+            if(UserRole == Global.AdminRoleID)
+            {
+                <div class="buttons">
+                    <button onclick="location.href='/Admin/Countries'">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Страны
+                    </button>
+                    <button onclick="location.href='/Admin/Curorts'">
+                        <i class="fas fa-umbrella-beach"></i>
+                        Курорты
+                    </button>
+                    <button onclick="location.href='/Admin/Hotels'">
+                        <i class="fas fa-concierge-bell"></i>
+                        Отели
+                    </button>
+                    <button onclick="location.href='/Admin/Tours'">
+                        <i class="fas fa-suitcase-rolling"></i>
+                        Туры
+                    </button>
+                    <button onclick="location.href='/Admin/FireTours'">
+                        <i class="fab fa-gripfire"></i>
+                        Горящие туры
+                    </button>
+                </div>
+            }
+        } else
+        {
+            <h2>Нельзя просмотреть чужой профиль!</h2>
+        }
+    } else
+    {
+        <h2>Вы не атворизованы! Чтобы просмотреть данные профиля войдите в систему</h2>
+    }
+</div>

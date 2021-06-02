@@ -1,0 +1,50 @@
+﻿@using TourSnapModels.Models.Data;
+@using TourSnapProjects.Models.PublicModels;
+@using TourSnapProjects.Models.Find;
+
+@{
+    List<ResortModel> Items = (this.ViewBag.Items == null) ? new List<ResortModel>() : this.ViewBag.Items;
+
+    Int32 Page = (this.ViewBag.ActivePage == null) ? 0 : this.ViewBag.ActivePage;
+    Int32 MaxPage = (this.ViewBag.MaxPage == null) ? 0 : this.ViewBag.MaxPage;
+}
+
+<div class="items-list resorts">
+    <div class="data">
+        @foreach(var Item in Items)
+        {
+            <div class="item">
+                <div class="logo" onclick="location.href = '/Resorts/Get/@Item.ID'">
+                    <img src="~/Data/photos/resorts/@Item.Photos[0]">
+                </div>
+                <a href="/Resorts/Get/@Item.ID" class="title">@Item.Name</a>
+                <p class="subtitle">@Item.Country</p>
+                <p class="text">@Item.Text</p>
+                <button class="about" onclick="location.href = '/Resorts/Get/@Item.ID'">Подробнее</button>
+            </div>
+        }
+    </div>
+
+    <div class="pagination">
+        <div class="buttons">
+            @if(Page > 0)
+            {
+                <button onclick="resortTo('/Home/Resorts/Get')">В начало</button>
+                <button onclick="resortTo('/Home/Resorts/Get', @(Page - 1))">Предыдущая</button>
+            } else
+            {
+                <button class="disabled">В начало</button>
+                <button class="disabled">Предыдущая</button>
+            }
+            @if(Page < MaxPage)
+            {
+                <button onclick="resortTo('/Home/Resorts/Get', @(Page + 1))">Следующая</button>
+                <button onclick="resortTo('/Home/Resorts/Get', @MaxPage)">В конец</button>
+            } else
+            {
+                <button class="disabled">Следующая</button>
+                <button class="disabled">В конец</button>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,242 @@
+﻿/* -------------------------------- basic */
+
+/* @media (max-width: 575.98px) {*/
+/* @media (max-width: 767.98px) {*/
+/* @media (max-width: 991.98px) {*/
+/* @media (max-width: 1199.98px) {*/
+
+main .profile-body {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ff9c5a;
+    border-radius: .25rem;
+    -webkit-border-radius: .25rem;
+    -moz-border-radius: .25rem;
+    -ms-border-radius: .25rem;
+    -o-border-radius: .25rem;
+    padding: 24px;
+}
+
+    main .profile-body .profile {
+        display: flex;
+        justify-content: center;
+    }
+
+    main .profile-body .profile .photo {
+        max-width: 220px;
+        height: auto;
+        width: 100%;
+    }
+
+        main .profile-body .profile .photo img {
+            width: 100%;
+        }
+
+    main .profile-body .buttons {
+        display: flex;
+        flex-direction: column;
+        min-width: 200px;
+        max-width: 100%;
+        padding: 12px;
+    }
+    main .profile-body .profile .buttons {
+        padding: 0 12px;
+    }
+    main .profile-body .buttons button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 40px;
+        background-color: #1c7dc7;
+        color: white;
+        border-style: none;
+        border-radius: .25rem;
+        cursor: pointer;
+        transition-duration: .2s;
+        transition-property: background;
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    main .profile-body .buttons button svg {
+        height: 30px;
+        width: 30px;
+        margin-right: 8px;
+    }
+
+    main .profile-body .buttons button:hover {
+        background-color: rgb(106,184,244);
+    }
+
+    main .profile-body .buttons button:active {
+        background-color: #104e7d;
+    }
+
+/* -------------------------------- data*/
+
+    main .profile-body .data {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    main .profile-body .data .line {
+        display: flex;
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    main .profile-body .data .line .title {
+        min-width: 140px;
+        width: 140px;
+    }
+
+    main .profile-body .data .line .edit {
+        min-width: 90px;
+        width: 90px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    main .profile-body .data .line .edit button {
+        width: 40px;
+        height: 40px;
+        padding: 4px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        transition-duration: .2s;
+        transition-property: background;
+        background-color: transparent;
+        border-style: none;
+        border-radius: .25rem;
+        -webkit-border-radius: .25rem;
+        -moz-border-radius: .25rem;
+        -ms-border-radius: .25rem;
+        -o-border-radius: .25rem;
+    }
+
+    main .profile-body .data .line .edit button svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    main .profile-body .data .line .edit button.accept {
+        color: #7ed55c;
+    }
+    main .profile-body .data .line .edit button.cancel {
+        color: #ea352e;
+    }
+    main .profile-body .data .line .edit button.edit-on {
+        color: #eaaf1e;
+    }
+
+    main .profile-body .data .line .edit button.edit-on svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    main .profile-body .data .line .edit button.accept:hover {
+        background-color: #dff4d6;
+    }
+    main .profile-body .data .line .edit button.cancel:hover {
+        background-color: #fac4c2;
+    }
+    main .profile-body .data .line .edit button.edit-on:hover {
+        background-color: #faebc6;
+    }
+
+    @media screen and (min-width: 675px) {
+        
+        main .profile-body .profile {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+        }
+
+        main .profile-body .profile .buttons {
+            display: flex;
+            flex-direction: column;
+            padding: 12px 0;
+        }
+
+        main .profile-body .buttons button {
+            height: 40px;
+        }
+
+        main .profile-body .buttons button svg {
+            height: 20px;
+            width: 20px;
+            margin-right: 6px;
+        }
+    
+        main .profile-body .data .line .edit {
+            min-width: 90px;
+            width: 90px;
+        }
+        
+    }
+
+    @media screen and (min-width: 860px){
+        main .profile-body {
+            flex-direction: row;
+        }
+
+        main .profile-body .buttons {
+            max-width: 300px;
+        }
+
+    }
+
+    @media screen and (min-width: 991.98px) {
+
+        main .profile-body .profile {
+            max-width: 220px;
+            margin-right: 24px;
+        }
+
+        main .profile-body .profile .photo {
+            height: auto;
+            width: 100%;
+        }
+
+        main .profile-body .profile .photo img {
+            height: auto;
+            width: 100%;
+        }
+
+        main .profile-body .profile .buttons {
+            padding: 12px 0;
+        }
+
+        main .profile-body .buttons button {
+            height: 40px;
+            font-size: 22px;
+        }
+
+        main .profile-body .buttons button svg {
+            height: 30px;
+            width: 30px;
+            margin-right: 8px;
+        }
+
+        main .profile-body .data .line {
+            font-size: 22px;
+        }
+
+        main .profile-body .data .line .title {
+            min-width: 140px;
+            width: 140px;
+        }
+    
+        main .profile-body .data .line .edit {
+            min-width: 90px;
+            width: 90px;
+        }
+        
+    }

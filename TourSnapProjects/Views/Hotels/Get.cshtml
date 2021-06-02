@@ -1,0 +1,71 @@
+﻿@using TourSnapProjects.Models.PublicModels;
+
+@{
+    HotelModel Item = this.ViewBag.Item;
+    List<TourModel> Tours = (this.ViewBag.HotelTours == null) ? new List<TourModel>() : this.ViewBag.HotelTours;
+
+    int MaxPhotos = 4;
+}
+
+<div class="single-item">
+
+    @if(Item != null)
+    {
+        int Slides = (int)(Item.Photos.Length / (float)MaxPhotos + 0.5);
+
+        <div class="data">
+            <div class="info">
+                <p class="title">@Item.Name</p>
+                <p class="subtitle">@Item.Resort</p>
+                <p class="text">Категория: @Item.Category</p>
+                <p class="text">Питание: @Item.Eating</p>
+                <p class="text">@Item.Text</p>
+            </div>
+            <!--
+            <div class="item-map">
+                <iframe src="Item.Map"></iframe>
+            </div>
+            -->
+        </div>
+        <div class="images">
+            @foreach(var Photo in Item.Photos)
+            {
+                <img src="~/Data/photos/hotels/@Photo" onclick="lightbox(this)">
+            }
+        </div>
+        <div class="list">
+            <p class="title">Туры в отель</p>
+            <table class="items">
+                <tr class="item">
+                    <th>Название</th>
+                    <th>Дата</th>
+                    <th>Количество дней</th>
+                    <th>Цена</th>
+                </tr>
+                @foreach(var Tour in Tours)
+                {
+
+                    <tr class="item">
+                        <td>
+                            @if(Tour.IsFire)
+                            {
+                                <a href="/Tours/Get/@Tour.ID" class="title">@Tour.Title <i class="fab fa-gripfire"></i></a>
+                            } else
+                            {
+                                <a href="/Tours/Get/@Tour.ID" class="title">@Tour.Title </a>
+                            }
+                        </td>
+                        <td><p>@Tour.Date</p></td>
+                        <td><p>@Tour.Days</p></td>
+                        <td><p>@Tour.Price бел.руб.</p></td>
+                    </tr>
+
+                }
+            </table>
+        </div>
+    } else
+    {
+        <h2>Не выбран отель!</h2>
+    }
+
+</div>

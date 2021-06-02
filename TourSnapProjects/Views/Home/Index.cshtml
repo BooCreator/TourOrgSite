@@ -1,0 +1,307 @@
+﻿@using TourSnapProjects.Models.PublicModels
+
+@{
+    List<MainCountryModel> Countries = (this.ViewBag.MainCountries == null) ? new List<MainCountryModel>() : this.ViewBag.MainCountries;
+    List<FireTourModel> FireTours = (this.ViewBag.MainFireTours == null) ? new List<FireTourModel>() : this.ViewBag.MainFireTours;
+}
+
+<div class="content-body vertical">
+    <div class="line prefers">
+        <p class="title">Наши преимущества</p>
+        <div class="content">
+            <div class="d-flex flex-column">
+                <img src="~/Data/img/Main/compass.svg">
+                <p class="title">Все лучшие туры и круизы в одной компании</p>
+                <p>Миллионы туров от десятков ведущих туроператоров и морские круизы во всех регионах мира.</p>
+            </div>
+            <div class="d-flex flex-column">
+                <img src="~/Data/img/Main/pricing.svg">
+                <p class="title">Отличные цены</p>
+                <p>Мы предлагаем туры по ценам туроператоров, без наценок! Имеем доступ ко всем системам бронирования самых надежных туроператоров, поэтому мы всегда находим самые выгодные предложения.</p>
+            </div>
+            <div class="d-flex flex-column">
+                <img src="~/Data/img/Main/consulting.svg">
+                <p class="title">Квалифицированная консультация​</p>
+                <p>Наши консультанты имеют либо высшее туристическое образование, либо многолетний опыт работы. Они постоянно обновляют свои знания в рекламных турах и отлично знают свое дело.​</p>
+            </div>
+            <div class="d-flex flex-column">
+                <img src="~/Data/img/Main/favourites.svg">
+                <p class="title">Оплата различными способами</p>
+                <p>Вы можете оплатить наши услуги наличными, безналичным расчетом или пластиковой картой.</p>
+            </div>
+            <div class="d-flex flex-column">
+                <img src="~/Data/img/Main/calendar.svg">
+                <p class="title">Работаем по выходным</p>
+                <p>Мы понимаем как тяжело в будний день выделить время на поездку в агентство и поэтому работаем в субботу и воскресенье.</p>
+            </div>
+            <div class="d-flex flex-column">
+                <img src="~/Data/img/Main/support.svg">
+                <p class="title">Надежность</p>
+                <p>Каждую поездку оформляем официально, выдаем чек и никогда не отказываемся от своих обязательств.</p>
+            </div>
+        </div>
+    </div>
+    <div class="line napravs">
+        <p class="title">Направления</p>
+        <div class="grid">
+            @foreach(var Item in Countries)
+            {
+                <div class="item">
+                    <img src="~/Data/photos/countries/@Item.Image">
+                    <div class="label"><p>@Item.Title</p></div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="line firetours">
+        <p class="title">Горячие туры</p>
+        <div class="content" style="justify-content: space-around;">
+            @foreach(var Item in FireTours)
+            {
+                <div class="tour-item">
+                    <div class="tour-content">
+                        <a href="/Tours/Get/@Item.ID" class="logo">
+                            <img src="~/Data/photos/@Item.Photo">
+                        </a>
+                        <div class="tour-caption">
+                            <a href="/Tours/Get/@Item.ID" class="tour-title">@Item.Title</a>
+                        </div>
+                        <div class="tour-data">
+                            <div class="tour-duration">Действует с <b>@Item.StartDate</b></div>
+                            <div class="tour-duration">@Item.FireDays дня(ей)</div>
+                            <div class="tour-price">
+                                <span class="tour-thumb-last-price">@Item.TourPrice</span>
+                                <span>→</span>
+                                <span class="tour-thumb-final-price">@Item.FirePrice</span>
+                                бел.руб.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-background"></div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="line experts">
+        <p class="title">Эксперты</p>
+        <div class="content" style="justify-content: space-around;">
+            <div class="ecard">
+                <img src="~/Data/img/Experts/anna.png">
+                <h3>Анна</h3>
+                <ul>
+                    <li><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>БГЭУ, Высшая школа туризма</span></li>
+                    <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Посетила более 24 стран</span></li>
+                    <li><i class="fa fa-user" aria-hidden="true"></i><span>Участвовала в 54 семинарах</span></li>
+                    <li><i class="fas fa-umbrella-beach"></i><span>Организовала 5340 туристам незабываемый отдых</span></li>
+                    <li><i class="fa fa-heart" aria-hidden="true"></i><span>Организовала более 21 свадебных туров</span></li>
+                </ul>
+            </div>
+            <div class="ecard">
+                <img src="~/Data/img/Experts/viktoria.png">
+                <h3>Виктория</h3>
+                <ul>
+                    <li><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>БарГУ, Экономика и управление туристической индустрии</span></li>
+                    <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Посетила более 19 стран</span></li>
+                    <li><i class="fa fa-user" aria-hidden="true"></i><span>Участвовала в 59 семинарах</span></li>
+                    <li><i class="fas fa-umbrella-beach" aria-hidden="true"></i><span>Организовала 4985 туристам незабываемый отдых</span></li>
+                    <li><i class="fa fa-heart" aria-hidden="true"></i><span>Организовала более 18 свадебных туров</span></li>
+                </ul>
+            </div>
+            <div class="ecard">
+                <img src="~/Data/img/Experts/alena2.png">
+                <h3>Алёна</h3>
+                <ul>
+                    <li><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>БНТУ, бухгалтерский учет, анализ и аудит</span></li>
+                    <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Посетила более 12 стран</span></li>
+                    <li><i class="fa fa-user" aria-hidden="true"></i><span>Участвовала в 15 семинарах</span></li>
+                    <li><i class="fas fa-umbrella-beach" aria-hidden="true"></i><span>Организовала 1112 туристам незабываемый отдых</span></li>
+                    <li><i class="fa fa-heart" aria-hidden="true"></i><span>Организовала более 3 свадебных туров</span></li>
+                </ul>
+            </div>
+            <div class="ecard">
+                <img src="~/Data/img/Experts/yulia.png">
+                <h3>Юлия</h3>
+                <ul>
+                    <li><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>БГУКИ</span></li>
+                    <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Посетила более 9 стран</span></li>
+                    <li><i class="fa fa-user" aria-hidden="true"></i><span>Участвовала в 24 семинарах</span></li>
+                    <li><i class="fas fa-umbrella-beach" aria-hidden="true"></i><span>Организовала 850 туристам незабываемый отдых</span></li>
+                    <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Основные направления Турция, Египет, Греция</span></li>
+                </ul>
+            </div>
+            <div class="ecard">
+                <img src="~/Data/img/Experts/elena.png">
+                <h3>Елена</h3>
+                <ul>
+                    <li><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>БГУФК, Институт туризма</span></li>
+                    <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Посетила более 25 стран</span></li>
+                    <li><i class="fa fa-user" aria-hidden="true"></i><span>Участвовала в 83 семинарах</span></li>
+                    <li><i class="fas fa-umbrella-beach" aria-hidden="true"></i><span>Организовала 4001 туристам незабываемый отдых</span></li>
+                    <li><i class="fa fa-heart" aria-hidden="true"></i><span>Организовала более 13 свадебных туров</span></li>
+                </ul>
+            </div>
+            <div class="ecard">
+                <img src="~/Data/img/Experts/elizaveta.jpg">
+                <h3>Елизавета</h3>
+                <ul>
+                    <li><i class="fa fa-user" aria-hidden="true"></i><span>Визовый и страховой специалист</span></li>
+                    <li><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>БГУ</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i><span>Посетила более 8 стран</span></li>
+                    <li><i class="far fa-paper-plane"></i><span>Обращайтесь по визовый поддержке и страхованию</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="line otzivi">
+        <p class="title">Отзывы</p>
+        <div class="page-content slider">
+            <div id="Reports" class="carousel slide reports" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#Reports" data-slide-to="0" class="active"></li>
+                    <li data-target="#Reports" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="report-block">
+                            <div class="report-item">
+                                <div class="report-content">
+                                    <div class="report-rate">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <div class="report-resort"><i class="fas fa-map-marker-alt"></i> Италия, Рим</div>
+                                    <div class="report-date"><i class="far fa-calendar-alt"></i> 25.11.2020</div>
+                                    <div class="report-name">Иван</div>
+                                    <div class="report-text">Летали от этой фирмы в Италию - Рим. Очень довольны, прекрасный сервис...</div>
+                                </div>
+                                <img class="report-background" src="~/Data/photos/countries/Italy/default.jpg">
+                            </div>
+                        </div>
+                        <div class="report-block">
+                            <div class="report-item">
+                                <div class="report-content">
+                                    <div class="report-rate">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <div class="report-resort"><i class="fas fa-map-marker-alt"></i> Турция, Кушадасы</div>
+                                    <div class="report-date"><i class="far fa-calendar-alt"></i> 25.11.2019</div>
+                                    <div class="report-name">Надежда</div>
+                                    <div class="report-text">Летали от этой фирмы в Турцию - Измир - Кушадасы. Отель Атлантик Холидэй Клаб 3+...</div>
+                                </div>
+                                <img class="report-background" src="~/Data/photos/countries/Turkey/default.jpg">
+                            </div>
+                        </div>
+                        <div class="report-block">
+                            <div class="report-item">
+                                <div class="report-content">
+                                    <div class="report-rate">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <div class="report-resort"><i class="fas fa-map-marker-alt"></i> Египет, Хургада</div>
+                                    <div class="report-date"><i class="far fa-calendar-alt"></i> 11.09.2020</div>
+                                    <div class="report-name">Маргарита</div>
+                                    <div class="report-text">Летали с мужем в Египет-Хургаду с 11-28 сентября. Отдохнули замечательно. Спасибо ...</div>
+                                </div>
+                                <img class="report-background" src="~/Data/photos/countries/Egupt/default.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="report-block">
+                            <div class="report-item">
+                                <div class="report-content">
+                                    <div class="report-rate">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <div class="report-resort"><i class="fas fa-map-marker-alt"></i> Россия, Москва</div>
+                                    <div class="report-date"><i class="far fa-calendar-alt"></i> 09.02.2021</div>
+                                    <div class="report-name">Наталья</div>
+                                    <div class="report-text">Я и моя семья пользуемся услугами фирмы больше 15 лет. Сначала в Гомеле, а сейча...</div>
+                                </div>
+                                <img class="report-background" src="~/Data/photos/countries/Russia/default.jpg">
+                            </div>
+                        </div>
+                        <div class="report-block">
+                            <div class="report-item">
+                                <div class="report-content">
+                                    <div class="report-rate">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="report-resort"><i class="fas fa-map-marker-alt"></i> Беларусь, Минск</div>
+                                    <div class="report-date"><i class="far fa-calendar-alt"></i> 03.05.2021</div>
+                                    <div class="report-name">Татьяна и Дмитрий</div>
+                                    <div class="report-text">С турагентством «TourSnap» путешествуем семьей не первый раз. В этом году мы в....</div>
+                                </div>
+                                <img class="report-background" src="~/Data/photos/countries/Belarus/default.jpg">
+                            </div>
+                        </div>
+                        <div class="report-block">
+                            <div class="report-item">
+                                <div class="report-content">
+                                    <div class="report-rate">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <div class="report-resort"><i class="fas fa-map-marker-alt"></i> Испания, Мадрид</div>
+                                    <div class="report-date"><i class="far fa-calendar-alt"></i> 15.07.2019</div>
+                                    <div class="report-name">Юрий и Екатерина</div>
+                                    <div class="report-text">Пользовались услугами TourSnap при путешествии в Испанию на свадебное путешестви...</div>
+                                </div>
+                                <img class="report-background" src="~/Data/photos/countries/Spain/default.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#Reports" role="button" data-slide="prev">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+                <a class="carousel-control-next" href="#Reports" role="button" data-slide="next">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="line callback">
+        <p class="title">Как связаться</p>
+        <div class="content calls">
+            <div class="item">
+                <img src="~/Data/img/Call/connect-1.png">
+                <p>Позвоните по указаным номерам на сайте</p>
+            </div>
+            <div class="item">
+                <img src="~/Data/img/Call/connect-2.png">
+                <p>Напишите нам в форме «Контакты»</p>
+            </div>
+            <div class="item">
+                <img src="~/Data/img/Call/connect-3.png">
+                <p>Свяжитесь с онлайн-консультантом на сайте</p>
+            </div>
+            <div class="item">
+                <img src="~/Data/img/Call/connect-4.png">
+                <p>Приезжайте в наш уютный офис</p>
+            </div>
+        </div>
+    </div>
+</div>

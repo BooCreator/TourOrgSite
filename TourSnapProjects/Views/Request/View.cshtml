@@ -1,0 +1,70 @@
+﻿@using TourSnapProjects.Models.Request;
+
+@{
+    Int32 Page = (this.ViewBag.ActivePage == null) ? 0 : this.ViewBag.ActivePage;
+    Int32 MaxPage = (this.ViewBag.MaxPage == null) ? 0 : this.ViewBag.MaxPage;
+
+    List<RequestModel> Items = (this.ViewBag.RequestItems == null) ? new List<RequestModel>() : this.ViewBag.RequestItems;
+}
+
+<div class="items-list requests">
+    <h2>Мои заявки</h2>
+    <div class="data">
+        <table>
+            <tr>
+                <th class="fill"></th>
+                <th class="id">№</th>
+                <th class="tour">Название тура</th>
+                <th class="date">Дата заявки</th>
+                <th class="price">Цена заявки</th>
+                <th class="state">Состояние заявки</th>
+                <th class="state"></th>
+                <th class="fill"></th>
+            </tr>
+            @foreach(var Item in Items)
+            {
+                <tr>
+                    <td class="fill"></td>
+                    <td class="id">@Item.ID</td>
+                    <td class="tour">
+                        <a href="/Tours/Get/@Item.TourID">
+                            @Item.Tour
+                            @if(Item.IsFire)
+                            {
+                                <i class="fab fa-gripfire"></i>
+                            }
+                        </a>
+                    </td>
+                    <td class="date">@Item.Date</td>
+                    <td class="price">@Item.TourPrice</td>
+                    <td class="state">@Item.State</td>
+                    <td class="id"><button class="cancel" onclick="DeleteRequest(@Item.ID)"><i class="fas fa-trash-alt"></i></button></td>
+                    <td class="fill"></td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div class="pagination">
+        <div class="buttons">
+            @if(Page > 0)
+            {
+                <button onclick="hotelTo('/Request/View')">В начало</button>
+                <button onclick="hotelTo('/Request/View', @(Page - 1))">Предыдущая</button>
+            } else
+            {
+                <button class="disabled">В начало</button>
+                <button class="disabled">Предыдущая</button>
+            }
+            @if(Page < MaxPage)
+            {
+                <button onclick="hotelTo('/Request/View', @(Page + 1))">Следующая</button>
+                <button onclick="hotelTo('/Request/View', @MaxPage)">В конец</button>
+            } else
+            {
+                <button class="disabled">Следующая</button>
+                <button class="disabled">В конец</button>
+            }
+        </div>
+    </div>
+</div>

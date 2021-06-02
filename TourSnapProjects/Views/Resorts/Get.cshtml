@@ -1,0 +1,59 @@
+﻿@using TourSnapProjects.Models.PublicModels;
+
+@{
+    ResortModel Item = this.ViewBag.Item;
+    List<HotelModel> Hotels = (this.ViewBag.ResortHotels == null) ? new List<HotelModel>() : this.ViewBag.ResortHotels;
+
+    int MaxPhotos = 4;
+}
+
+<div class="single-item">
+
+    @if(Item != null)
+    {
+        int Slides = (int)(Item.Photos.Length / (float)MaxPhotos + 0.5);
+
+        <div class="data">
+            <div class="info">
+                <p class="title">@Item.Name</p>
+                <p class="subtitle">@Item.Country</p>
+                <p class="text">@Item.Text</p>
+            </div>
+            <div class="item-map">
+                <iframe src="@Item.Map"></iframe>
+            </div>
+        </div>
+        <div class="images">
+            @foreach(var Photo in Item.Photos)
+            {
+                <img src="~/Data/photos/resorts/@Photo" onclick="lightbox(this)">
+            }
+        </div>
+        <div class="list">
+            <p class="title">Отели курорта</p>
+            <table class="items">
+                <tr class="item">
+                    <th>Название</th>
+                    <th>Категория</th>
+                    <th>Питание</th>
+                    <th>Цена</th>
+                </tr>
+                @foreach(var Hotel in Hotels)
+                {
+
+                    <tr class="item">
+                        <td><a href="/Hotels/Get/@Hotel.ID" class="title">@Hotel.Name</a></td>
+                        <td><p>@Hotel.Category</p></td>
+                        <td><p>@Hotel.Eating</p></td>
+                        <td><p>@Hotel.Price бел.руб.</p></td>
+                    </tr>
+
+                }
+            </table>
+        </div>
+    } else
+    {
+        <h2>Не выбран курорт!</h2>
+    }
+
+</div>

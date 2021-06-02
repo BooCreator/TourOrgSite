@@ -1,0 +1,82 @@
+﻿@using TourSnapProjects.Models.PublicModels;
+
+@{
+    List<TourModel> Items = (this.ViewBag.Items == null) ? new List<TourModel>() : this.ViewBag.Items;
+
+    Int32 Page = (this.ViewBag.ActivePage == null) ? 0 : this.ViewBag.ActivePage;
+    Int32 MaxPage = (this.ViewBag.MaxPage == null) ? 0 : this.ViewBag.MaxPage;
+}
+
+<div class="items-list finds content-body">
+    <div class="data line">
+        <div class="content">
+            @foreach(var Item in Items)
+            {
+                if(Item.IsFire)
+                {
+                    <div class="tour-item">
+                        <div class="tour-content">
+                            <a href="/Tours/Get/@Item.ID" class="logo">
+                                <img src="~/Data/photos/@Item.Photo">
+                            </a>
+                            <div class="tour-caption">
+                                <a href="/Tours/Get/@Item.ID" class="tour-title">@Item.Title <i class="fab fa-gripfire"></i></a>
+                            </div>
+                            <div class="tour-data">
+                                <div class="tour-duration">@Item.StartDate</div>
+                                <div class="tour-duration">@Item.Days дней</div>
+                                <div class="tour-price">
+                                    <span class="tour-thumb-last-price">@Item.Price</span>
+                                    <span>→</span>
+                                    <span class="tour-thumb-final-price">@Item.FirePrice</span>
+                                    бел.руб.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-background"></div>
+                    </div>
+                } else
+                {
+                    <div class="tour-item">
+                        <div class="tour-content">
+                            <a href="/Tours/Get/@Item.ID" class="logo">
+                                <img src="~/Data/photos/@Item.Photo">
+                            </a>
+                            <div class="tour-caption">
+                                <a href="/Tours/Get/@Item.ID" class="tour-title">@Item.Title</a>
+                            </div>
+                            <div class="tour-data">
+                                <div class="tour-duration">@Item.Date</div>
+                                <div class="tour-duration">@Item.Days дня(ей)</div>
+                                <div class="tour-price">@Item.Price бел.руб.</div>
+                            </div>
+                        </div>
+                        <div class="block-background"></div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="pagination">
+        <div class="buttons">
+            @if(Page > 0)
+            {
+                <button onclick="mainTo('/Home/Find')">В начало</button>
+                <button onclick="mainTo('/Home/Find', @(Page - 1))">Предыдущая</button>
+            } else
+            {
+                <button class="disabled">В начало</button>
+                <button class="disabled">Предыдущая</button>
+            }
+            @if(Page < MaxPage)
+            {
+                <button onclick="mainTo('/Home/Find', @(Page + 1))">Следующая</button>
+                <button onclick="mainTo('/Home/Find', @MaxPage">В конец</button>
+            } else
+            {
+                <button class="disabled">Следующая</button>
+                <button class="disabled">В конец</button>
+            }
+        </div>
+    </div>
+</div>

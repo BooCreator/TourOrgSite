@@ -1,0 +1,86 @@
+﻿@using TourSnapProjects.Models.Admin;
+
+@{
+    Int32 UserID = (this.ViewBag.UserID == null) ? -1 : this.ViewBag.UserID;
+    Int32 UserRole = (this.ViewBag.UserRole == null) ? -1 : this.ViewBag.UserRole;
+
+    List<TourData> Items = (this.ViewBag.Items == null) ? new List<TourData>() : this.ViewBag.Items;
+}
+
+<div class="work-buttons">
+    @if(UserRole == Global.AdminRoleID)
+    {
+        <div class="items cols-5">
+            <button onclick="location.href='/Admin/Countries'">
+                <i class="fas fa-map-marked-alt"></i>
+                Страны
+            </button>
+            <button onclick="location.href='/Admin/Curorts'">
+                <i class="fas fa-umbrella-beach"></i>
+                Курорты
+            </button>
+            <button onclick="location.href='/Admin/Hotels'">
+                <i class="fas fa-concierge-bell"></i>
+                Отели
+            </button>
+            <button onclick="location.href='/Admin/Tours'">
+                <i class="fas fa-suitcase-rolling"></i>
+                Туры
+            </button>
+            <button class="active">
+                <i class="fab fa-gripfire"></i>
+                Горящие туры
+            </button>
+        </div>
+    }
+</div>
+
+<div class="work-body" id="firetours_form">
+    @if(UserRole != Global.AdminRoleID)
+    {
+        <h2>Доступ запрещён!</h2>
+    } else
+    {
+<div class="fields">
+    <div class="line">
+        <p class="label">ИД:</p>
+        <input type="text" class="form-control" id="TourField" readonly value="-1">
+    </div>
+    <div class="line">
+        <p class="label">ИД тура:</p>
+        <input type="text" class="form-control" id="TourIDField" readonly value="-1">
+    </div>
+    <div class="line">
+        <p class="label">Дата начала акции:</p>
+        <input type="date" class="form-control" id="StartDateField">
+    </div>
+    <div class="line">
+        <p class="label">Дата окончания акции:</p>
+        <input type="date" class="form-control" id="EndDateField">
+    </div>
+    <div class="line">
+        <p class="label">Цена за сутки:</p>
+        <input type="text" class="form-control" id="PriceField" placeholder="Введите цену тура на время акции..." checktype="float" onblur="check(this, this)">
+    </div>
+    <div class="line">
+        <p class="label"></p>
+        <button onclick="send_form('firetours_form', '/Admin/SaveFireTour', createFireTour)">Сохранить</button>
+        <button onclick="RemoveElem('TourField','/Admin/RemoveFireTour')">Удалить</button>
+    </div>
+</div>
+        <div class="items">
+            <div class="list-group">
+                @foreach(TourData Item in Items)
+                {
+                    <button type="button" onclick="LoadFireTour(@Item.ID, this)">
+                        @if(Item.IsFire)
+                        {
+                            <i class="fab fa-gripfire"></i>
+                        }
+                        &nbsp; &nbsp; @Item.Title (@Item.Date - @Item.Price бел.руб) 
+                    </button>
+                }
+            </div>
+        </div>
+    }
+</div>

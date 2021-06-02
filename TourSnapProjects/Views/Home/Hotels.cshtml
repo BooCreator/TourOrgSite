@@ -1,0 +1,51 @@
+﻿@using TourSnapProjects.Models.PublicModels;
+
+@{
+    List<HotelModel> Items = (this.ViewBag.Items == null) ? new List<HotelModel>() : this.ViewBag.Items;
+
+    Int32 Page = (this.ViewBag.ActivePage == null) ? 0 : this.ViewBag.ActivePage;
+    Int32 MaxPage = (this.ViewBag.MaxPage == null) ? 0 : this.ViewBag.MaxPage;
+}
+
+<div class="items-list hotels">
+    <div class="data">
+        @foreach(var Item in Items)
+        {
+            <div class="item">
+                <div class="logo" onclick="location.href = '/Hotels/Get/@Item.ID'">
+                    <img src="~/Data/photos/hotels/@Item.Photos[0]">
+                </div>
+                <a href="/Hotels/Get/@Item.ID" class="title">@Item.Name</a>
+                <p class="subtitle">@Item.Resort</p>
+                <p class="text"><b>Цена:</b> @Item.Price бел.руб.</p>
+                <p class="text"><b>Категория:</b> @Item.Category</p>
+                <p class="text"><b>Питание:</b> @Item.Eating</p>
+                <p class="text">@Item.Text</p>
+                <button class="about" onclick="location.href = '/Hotels/Get/@Item.ID'">Подробнее</button>
+            </div>
+        }
+    </div>
+
+    <div class="pagination">
+        <div class="buttons">
+            @if(Page > 0)
+            {
+                <button onclick="hotelTo('/Home/Hotels')">В начало</button>
+                <button onclick="hotelTo('/Home/Hotels', @(Page - 1))">Предыдущая</button>
+            } else
+            {
+                <button class="disabled">В начало</button>
+                <button class="disabled">Предыдущая</button>
+            }
+            @if(Page < MaxPage)
+            {
+                <button onclick="hotelTo('/Home/Hotels', @(Page + 1))">Следующая</button>
+                <button onclick="hotelTo('/Home/Hotels', @MaxPage)">В конец</button>
+            } else
+            {
+                <button class="disabled">Следующая</button>
+                <button class="disabled">В конец</button>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,156 @@
+﻿
+.work-buttons {
+    padding: 8px 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.work-buttons .items {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    border-radius: .25rem;
+    -webkit-border-radius: .25rem;
+    -moz-border-radius: .25rem;
+    -ms-border-radius: .25rem;
+    -o-border-radius: .25rem;
+}
+
+body.toursnap .work-buttons button {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+}
+
+.work-buttons button {
+    width: 20%;
+}
+
+.work-buttons button.active,
+.work-buttons button.active:hover {
+    background-color: #104e7d;
+}
+
+.work-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.work-body .items {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ced4da;
+}
+
+@media screen and (min-width: 767.98px){
+    .work-body .items {
+        overflow-y: scroll;
+    }
+
+    .work-body#countries_form .items {
+        max-height: 170px;
+        
+    }
+    .work-body#resorts_form .items {
+        max-height: 330px;
+    }
+    .work-body#hotels_form .items {
+        max-height: 420px;
+    }
+    .work-body#tours_form .items {
+        max-height: 330px;
+    }
+}
+
+.work-body .items select {
+    width: 100%;
+    height: 100%;
+}
+
+.work-body .fields {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    margin: 0 24px;
+}
+
+.work-body .fields .line {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 6px;
+}
+
+.work-body .fields .line .label {
+    min-width: 140px;
+    margin-right: 12px;
+}
+
+.work-body .fields button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    background-color: #1c7dc7;
+    color: white;
+    border-style: none;
+    border-radius: .25rem;
+    cursor: pointer;
+    transition-duration: .2s;
+    transition-property: background;
+    font-size: 22px;
+    margin-right: 12px;
+}
+
+.work-body .fields button svg {
+    height: 30px;
+    width: 30px;
+    margin-right: 8px;
+}
+
+.work-body .fields button:hover {
+    background-color: #6ab8f4;
+}
+
+.work-body .fields button:active {
+    background-color: #104e7d;
+}
+
+.work-body .items button {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #ffffff;
+    padding: .375rem .75rem;
+    border-style: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    transition-duration: .2s;
+    color: gray;
+    font-size: 14px;
+}
+
+.work-body .items button.active {
+    background-color: #1c7dc7;
+    color: white;
+}
+
+    .work-body .items button:hover {
+        background-color: #6ab8f4;
+        color: white;
+    }
+
+
+@media screen and (min-width: 767.98px) {
+    .work-body {
+        flex-wrap: nowrap;
+    }
+}

@@ -1,0 +1,25 @@
+﻿<div class="showed request">
+    <div class="card zajavka">
+        <div class="card-body">
+            <div class="title">
+                <h3>Оформить заявку</h3>
+                <button type="button" class="btn-close" onclick="Hide('.request')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="request_form">
+                <div class="form-group">
+                    <h5 for="Name">Имя:</h5>
+                    <input type="text" class="form-control" name="Name" id="RequestNameBox" checktype="text" onblur="check(null, this)">
+                    <div class="invalid-feedback">Пожалуйста введите ваше имя.</div>
+                </div>
+                <div class="form-group">
+                    <h5 for="Phone">Номер телефона:</h5>
+                    <input type="text" class="form-control" name="Phone" id="RequestPhoneBox" maxlength="9" checktype="phone" onblur="check(null, this)">
+                    <div class="invalid-feedback">Пожалуйста введите номер телефона.</div>
+                </div>
+                <button type="button" onclick="send_request_form()" requestID="-1">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>

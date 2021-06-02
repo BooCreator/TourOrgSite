@@ -1,0 +1,28 @@
+﻿@model TourSnapProjects.Models.Account.LoginModel
+
+<div class="showed login">
+    <div class="card zajavka">
+        <div class="card-body">
+            <div class="title">
+                <h3>Войти в систему</h3>
+                <button type="button" class="btn-close" onclick="Hide('.login')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="login_form">
+                <div class="form-group">
+                    <h5 for="MailOrPhone">Номер телефона или e-mail:</h5>
+                    <input type="text" class="form-control" name="MailOrPhone" checktype="phone,mail">
+                    <div class="invalid-feedback">Пожалуйста введите номер телефона.</div>
+                </div>
+                <div class="form-group">
+                    <h5 for="Password">Пароль:</h5>
+                    <input type="password" class="form-control" name="Password">
+                    <div class="invalid-feedback">Пожалуйста введите пароль.</div>
+                </div>
+
+                <button type="button" onclick="send_form('login_form', '/Account/Login', createLogin)">Войти</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+﻿@using TourSnapModels.Models.Data;
+
+@{
+    Int32 UserID = (this.ViewBag.UserID == null) ? -1 : this.ViewBag.UserID;
+    Int32 UserRole = (this.ViewBag.UserRole == null) ? -1 : this.ViewBag.UserRole;
+
+    List<Country> Items = (this.ViewBag.Items == null) ? new List<Country>() : this.ViewBag.Items;
+}
+
+<div class="work-buttons">
+    @if(UserRole == Global.AdminRoleID)
+    {
+        <div class="items">
+            <button class="active">
+                <i class="fas fa-map-marked-alt"></i>
+                Страны
+            </button>
+            <button onclick="location.href='/Admin/Curorts'">
+                <i class="fas fa-umbrella-beach"></i>
+                Курорты
+            </button>
+            <button onclick="location.href='/Admin/Hotels'">
+                <i class="fas fa-concierge-bell"></i>
+                Отели
+            </button>
+            <button onclick="location.href='/Admin/Tours'">
+                <i class="fas fa-suitcase-rolling"></i>
+                Туры
+            </button>
+            <button onclick="location.href='/Admin/FireTours'">
+                <i class="fab fa-gripfire"></i>
+                Горящие туры
+            </button>
+        </div>
+    }
+</div>
+
+<div class="work-body" id="countries_form">
+    @if(UserRole != Global.AdminRoleID)
+    {
+        <h2>Доступ запрещён!</h2>
+    } else
+    {
+        <div class="fields">
+            <div class="line">
+                <p class="label">ИД:</p>
+                <input type="text" class="form-control" id="IdField" readonly value="-1">
+            </div>
+            <div class="line">
+                <p class="label">Название:</p>
+                <input type="text" class="form-control" id="NameField" placeholder="Введите название..." checktype="text" onblur="check(this, this)" maxlength="50">
+            </div>
+            <div class="line">
+                <p class="label">Карта:</p>
+                <input type="text" class="form-control" id="MapField" placeholder="Введите ссылку на карту..." maxlength="255">
+            </div>
+            <div class="line">
+                <p class="label">Фотография:</p>
+                <input type="text" class="form-control" id="PhotoField" placeholder="Введите расположение фото..." maxlength="255">
+            </div>
+            <div class="line">
+                <p class="label"></p>
+                <button onclick="send_form('countries_form', '/Admin/SaveCountry', createCountry)">Сохранить</button>
+                <button onclick="RemoveElem('IdField', '/Admin/RemoveCountry')">Удалить</button>
+            </div>
+        </div>
+        <div class="items">
+            <div class="list-group">
+                <button type="button" class="active" onclick="LoadCountry(-1, this)">Новый...</button>
+                @foreach(Country Item in Items)
+                {
+                    <button type="button" onclick="LoadCountry(@Item.ID, this)">@Item.Name</button>
+                }
+            </div>
+        </div>
+    }
+</div>

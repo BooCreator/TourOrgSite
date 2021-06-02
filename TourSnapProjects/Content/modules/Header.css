@@ -1,0 +1,393 @@
+﻿/* -------------------------------- overtop and profile */
+
+/* @media (max-width: 575.98px) {*/
+/* @media (max-width: 767.98px) {*/
+/* @media (max-width: 991.98px) {*/
+/* @media (max-width: 1199.98px) {*/
+
+    .overtop {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        z-index: 1000;
+    }
+    
+    .overtop .profile {
+        min-width: 200px;
+        min-height: 40px;
+        border-radius: 0 0 .25rem .25rem;
+        border-style: none;
+        transition-duration: 0.2s;
+        transition-property: transform;
+        cursor: pointer;
+    }
+    /* style*/
+    .overtop .profile {
+        font-size: 22px;
+        color: white;
+        background-color: rgb(81, 131, 168);
+        background-origin: border-box;
+        background-image: -moz-linear-gradient( 90deg, rgb(106,184,244) 0%, rgb(28,125,199) 100%);
+        background-image: -webkit-linear-gradient( 90deg, rgb(106,184,244) 0%, rgb(28,125,199) 100%);
+        background-image: -ms-linear-gradient( 90deg, rgb(106,184,244) 0%, rgb(28,125,199) 100%);
+        margin-top: 0px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    
+        .overtop .profile div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    
+        .overtop .profile img {
+            height: 30px;
+            margin-right: 8px;
+        }
+    
+        .overtop .profile button {
+            width: 100%;
+            border-style: none;
+            background-color: transparent;
+            color: white;
+            border-radius: 0;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            -ms-border-radius: 0;
+            -o-border-radius: 0;
+            transition-property: transform;
+}
+        .overtop .profile button:hover {
+            background-color: #ff7700;
+            transform: translateY(10px);
+            -webkit-transform: translateY(10px);
+            -moz-transform: translateY(10px);
+            -ms-transform: translateY(10px);
+            -o-transform: translateY(10px);
+}
+        
+        .overtop .profile:hover {
+            transform: translateY(0px);
+            -webkit-transform: translateY(0px);
+            -moz-transform: translateY(0px);
+            -ms-transform: translateY(0px);
+            -o-transform: translateY(0px);
+}
+    
+        .overtop .profile:focus {
+            transition-property: background-position;
+            background-position: 0 40px;
+        }
+    
+    @media screen and (min-width: 575.98px) {
+        .overtop {
+            max-width: 98%;
+            margin: 0 auto;
+        }
+    
+        .overtop .profile {
+            min-width: 200px;
+            max-width: 25%;
+        }
+    
+    }
+    
+    @media screen and (min-width: 991.98px) {
+    
+        .overtop {
+            max-width: 90%;
+        }
+    
+        .overtop .profile {
+            min-width: 300px;
+        }
+    
+    }
+    
+    /* -------------------------------- logo and title */
+    
+    .head {
+        display: flex;
+        flex-direction: column;
+    }
+    
+        .head .logo {
+            padding: 0 12px;
+        }
+    
+            .head .logo img {
+                width: 100%;
+            }
+    
+    .head .contacts {
+        display: flex;
+        flex-direction: column;
+        padding: 8px 12px;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .head .contacts div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        .head .contacts .phones {
+            flex-direction: column;
+        }
+    
+        .head .contacts .phones h2 {
+                color: #1c7dc7;
+                margin-bottom: 8px;
+                font-size: 24px;
+            }
+    
+            .head .contacts button {
+            width: 100%;
+            background-color: #1c7dc7;
+            color: white;
+            border-style: none;
+            border-radius: .25rem;
+            cursor: pointer;
+            transition-duration: .2s;
+            transition-property: background;
+            font-size: 22px;
+        }
+        .head .contacts button img {
+                height: 30px;
+                width: 30px;
+                margin-right: 8px;
+            }
+    
+            .head .contacts button:hover {
+                background-color: rgb(106,184,244);
+            }
+    
+            .head .contacts button:active {
+                background-color: #104e7d;
+            }
+    
+    @media screen and (min-width: 575.98px) {
+        
+    }
+    
+    @media screen and (min-width: 767.98px) {
+        .head {
+            max-width: 98%;
+            flex-direction: row;
+            margin: 12px auto 16px auto;
+        }
+    
+        .head .contacts {
+            min-width: 200px;
+            max-width: 25%;
+        }
+    
+        .head .contacts .phones h2 {
+                font-size: 18px;
+            }
+    
+            .head .contacts button {
+                width: 100%;
+                height: 40px;
+                padding: 4px;
+                font-size: 16px;
+            }
+            .head .contacts button img {
+                    height: 25px;
+                    width: 25px;
+                }
+    }
+    
+    @media screen and (min-width: 991.98px) {
+        .head {
+            max-width: 90%;
+            flex-direction: row;
+            margin: 12px auto 16px auto;
+        }
+    
+        .head .contacts {
+            min-width: 300px;
+            max-width: 25%;
+            justify-content: space-around;
+        }
+    
+        .head .contacts .phones h2 {
+            font-size: 22px;
+        }
+    
+        .head .contacts button {
+            width: 100%;
+            height: 40px;
+            font-size: 22px;
+        }
+        .head .contacts button img {
+                height: 30px;
+                width: 30px;
+            }
+    
+    }
+
+
+/* --------------------- slider */
+
+header .slider {
+    max-height: 200px;
+    height: 200px;
+}
+
+header .slider .carousel,
+header .slider .carousel div,
+header .slider .carousel img {
+    height: 100%;
+}
+
+@media screen and (min-width: 575.98px) {
+    header .slider {
+        max-height: 250px;
+        height: 250px;
+    }
+}
+@media screen and (min-width: 767.98px) {
+    header .slider {
+        max-height: 300px;
+        height: 300px;
+    }
+}
+@media screen and (min-width: 991.98px) {
+    header .slider {
+        max-height: 350px;
+        height: 350px;
+    }
+}
+@media screen and (min-width: 1199.98px) {
+    header .slider {
+        max-height: 400px;
+        height: 400px;
+    }
+}
+
+header .items-list {
+    background-color: red;
+    padding: 6px 12px;
+}
+
+header .find-menu {
+    display: flex;
+    justify-content: center;
+}
+
+header .find-menu .find {
+    width: 100%;
+    border-radius: .25rem;
+    -webkit-border-radius: .25rem;
+    -moz-border-radius: .25rem;
+    -ms-border-radius: .25rem;
+    -o-border-radius: .25rem; 
+    background-color: white; 
+}
+
+header .find-menu .find .item {
+    padding: 6px 12px;
+    justify-content: center;
+    margin: 0;
+}
+
+@media screen and (min-width: 767.98px) {
+    header .find-menu .find {
+        width: auto;
+    }
+}
+
+
+header .find-menu .find .item button {
+    background-color: white;
+    color: black;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    margin: 0;
+}
+
+header .find-menu .find .item button:hover {
+    background-color: #ddd;
+}
+
+header .find-menu .find .item button.active {
+    background-color: #ffa455;
+    color: white;
+}
+header .find-menu .find .item button.active:hover {
+    background-color: #ffa455;
+}
+
+
+/* -------------------------- main find */
+
+header .find-menu .find.main .item {
+    padding: 0;
+}
+
+header .find-menu .find.main .item .dropdown {
+    height: 100%;
+    padding: 0;
+}
+
+
+header .find-menu .find.main .item button {
+    height: 100%;
+}
+
+header .find-menu .find.main .item button.dropdown-toggle {
+    min-width: 140px;
+}
+
+header .find-menu .find.main .item:first-child button.dropdown-toggle {
+    border-radius: .25rem 0 0 .25rem;
+    -webkit-border-radius: .25rem 0 0 .25rem;
+    -moz-border-radius: .25rem 0 0 .25rem;
+    -ms-border-radius: .25rem 0 0 .25rem;
+    -o-border-radius: .25rem 0 0 .25rem;
+}
+
+header .find-menu .find.main .item:last-child button {
+    border-radius: 0 .25rem .25rem 0;
+    -webkit-border-radius: 0 .25rem .25rem 0;
+    -moz-border-radius: 0 .25rem .25rem 0;
+    -ms-border-radius: 0 .25rem .25rem 0;
+    -o-border-radius: 0 .25rem .25rem 0;
+}
+
+header .find-menu .find.main .item button .data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+}
+
+header .find-menu .find.main .item button .title {
+    text-transform: none;
+    font-size: 12px;
+}
+
+header .find-menu .find.main .item button .value {
+    text-transform: none;
+    color: black;
+    font-size: 16px;
+}
+
+header .find-menu .find.main .dropdown-menu {
+    padding: 0;
+}
+
+header .find-menu .find.main .dropdown-menu button {
+    font-size: 16px;
+    white-space: normal;
+    text-align: center;
+    padding: 4px 12px;
+}

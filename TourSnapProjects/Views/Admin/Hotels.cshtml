@@ -1,0 +1,112 @@
+﻿@using TourSnapModels.Models.Data;
+
+@{
+    Int32 UserID = (this.ViewBag.UserID == null) ? -1 : this.ViewBag.UserID;
+    Int32 UserRole = (this.ViewBag.UserRole == null) ? -1 : this.ViewBag.UserRole;
+
+    List<Resort> Resorts = (this.ViewBag.Resorts == null) ? new List<Resort>() : this.ViewBag.Resorts;
+    List<OtelCategory> Categories = (this.ViewBag.Categories == null) ? new List<OtelCategory>() : this.ViewBag.Categories;
+    List<OtelEating> Eatings = (this.ViewBag.Eatings == null) ? new List<OtelEating>() : this.ViewBag.Eatings;
+
+    List<Otel> Items = (this.ViewBag.Items == null) ? new List<Otel>() : this.ViewBag.Items;
+}
+
+<div class="work-buttons">
+    @if(UserRole == Global.AdminRoleID)
+    {
+        <div class="items">
+            <button onclick="location.href='/Admin/Countries'">
+                <i class="fas fa-map-marked-alt"></i>
+                Страны
+            </button>
+            <button onclick="location.href='/Admin/Curorts'">
+                <i class="fas fa-umbrella-beach"></i>
+                Курорты
+            </button>
+            <button class="active">
+                <i class="fas fa-concierge-bell"></i>
+                Отели
+            </button>
+            <button onclick="location.href='/Admin/Tours'">
+                <i class="fas fa-suitcase-rolling"></i>
+                Туры
+            </button>
+            <button onclick="location.href='/Admin/FireTours'">
+                <i class="fab fa-gripfire"></i>
+                Горящие туры
+            </button>
+        </div>
+    }
+</div>
+
+<div class="work-body" id="hotels_form">
+    @if(UserRole != Global.AdminRoleID)
+    {
+        <h2>Доступ запрещён!</h2>
+    } else
+    {
+        <div class="fields">
+            <div class="line">
+                <p class="label">ИД:</p>
+                <input type="text" class="form-control" id="IdField" readonly value="-1">
+            </div>
+            <div class="line">
+                <p class="label">Название:</p>
+                <input type="text" class="form-control" id="NameField" placeholder="Введите название..." checktype="text" onblur="check(this, this)" maxlength="50">
+            </div>
+            <div class="line">
+                <p class="label">Курорт:</p>
+                <select class="form-control" id="ResortField">
+                    @foreach(Resort Item in Resorts)
+                    {
+                        <option value="@Item.ID">@Item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="line">
+                <p class="label">Цена за сутки:</p>
+                <input type="text" class="form-control" id="PriceField" placeholder="Введите цену отеля за сутки..." checktype="float" onblur="check(this, this)">
+            </div>
+            <div class="line">
+                <p class="label">Категория:</p>
+                <select class="form-control" id="CategoryField">
+                    @foreach(OtelCategory Item in Categories)
+                    {
+                        <option value="@Item.ID">@Item.Title</option>
+                    }
+                </select>
+            </div>
+            <div class="line">
+                <p class="label">Питание:</p>
+                <select class="form-control" id="EatingField">
+                    @foreach(OtelEating Item in Eatings)
+                    {
+                        <option value="@Item.ID">@Item.Title</option>
+                    }
+                </select>
+            </div>
+            <div class="line">
+                <p class="label">Фотографии:</p>
+                <input type="text" class="form-control" id="PhotosField" placeholder="Введите путь к фотографиями на сервере..." maxlength="255">
+            </div>
+            <div class="line">
+                <p class="label">Описание:</p>
+                <textarea class="form-control" id="TextField" placeholder="Введите описание отеля..." maxlength="512"></textarea>
+            </div>
+            <div class="line">
+                <p class="label"></p>
+                <button onclick="send_form('hotels_form', '/Admin/SaveHotel', createHotel)">Сохранить</button>
+                <button onclick="RemoveElem('IdField','/Admin/RemoveHotel')">Удалить</button>
+            </div>
+        </div>
+        <div class="items">
+            <div class="list-group">
+                <button type="button" class="active" onclick="LoadHotel(-1, this)">Новый...</button>
+                @foreach(Otel Item in Items)
+                {
+                    <button type="button" onclick="LoadHotel(@Item.ID, this)">@Item.Name</button>
+                }
+            </div>
+        </div>
+    }
+</div>

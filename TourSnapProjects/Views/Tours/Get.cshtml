@@ -1,0 +1,57 @@
+﻿@using TourSnapProjects.Models.PublicModels;
+
+@{
+    TourModel Item = this.ViewBag.Item;
+
+    Int32 UserID = (this.ViewBag.UserID == null) ? -1 : this.ViewBag.UserID;
+
+    List<String> Photos = (this.ViewBag.TourPhotos == null) ? new List<String>() : this.ViewBag.TourPhotos;
+}
+
+<div class="single-item">
+
+    @if(Item != null)
+    {
+        <div class="data">
+            <div class="info">
+                <p class="title">@Item.Title <button onclick="send_request(@UserID, @Item.ID)">Оставить заявку</button></p>
+                <p class="subtitle">
+                    @if(Item.IsFire)
+                    {
+                        <span>Горящий тур <i class="fab fa-gripfire"></i></span>
+                    }
+                </p>
+                <p class="text"><b>Отель: </b>@Item.Otel</p>
+                <p class="text"><b>Дата: </b>@Item.Date</p>
+                <p class="text"><b>Количество дней: </b>@Item.Days</p>
+
+                @if(Item.IsFire)
+                {
+                    <p class="text">
+                        <b>Цена: </b>
+                        <span class="tour-thumb-last-price">@Item.Price</span>
+                        <span>→</span>
+                        <span class="tour-thumb-final-price">@Item.FirePrice</span>
+                        бел.руб.
+                    </p>
+                    <p class="text"><b>Начало акции: </b>@Item.StartDate</p>
+                    <p class="text"><b>Окончание акции: </b>@Item.EndDate</p>
+                } else
+                {
+                    <p class="text"><b>Цена: </b>@Item.Price</p>
+                }
+                <p class="text">@Item.Text</p>
+            </div>
+        </div>
+        <div class="images">
+            @foreach(var Photo in Photos)
+            {
+                <img src="~/Data/photos/@Photo" onclick="lightbox(this)">
+            }
+        </div>
+    } else
+    {
+        <h2>Не выбран Тур!</h2>
+    }
+
+</div>

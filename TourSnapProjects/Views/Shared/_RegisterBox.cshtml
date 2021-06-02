@@ -1,0 +1,42 @@
+﻿@model TourSnapProjects.Models.Account.RegisterModel
+
+<div class="showed register">
+    <div class="card zajavka">
+        <div class="card-body">
+            <div class="title">
+                <h3>Войти в систему</h3>
+                <button type="button" class="btn-close" onclick="Hide('.register')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="register_form">
+                <div class="form-group">
+                    <h5 for="Name">Имя:</h5>
+                    <input type="text" class="form-control" name="Name" maxlength="50" required checktype="text">
+                    <div class="invalid-feedback">Пожалуйста введите Ваше имя.</div>
+                </div>
+                <div class="form-group">
+                    <h5 for="Mail">Электронная почта:</h5>
+                    <input type="text" class="form-control" name="Mail" maxlength="50" required checktype="mail">
+                    <div class="invalid-feedback">Пожалуйста введите адрес электронной почты.</div>
+                </div>
+                <div class="form-group">
+                    <h5 for="Phone">Номер телефона:</h5>
+                    <input type="text" class="form-control" name="Phone" maxlength="9" required checktype="phone">
+                    <div class="invalid-feedback">Пожалуйста введите номер телефона.</div>
+                </div>
+                <div class="form-group">
+                    <h5 for="Password">Пароль:</h5>
+                    <input type="password" class="form-control" name="Password" required checktype="password">
+                    <div class="invalid-feedback">Пожалуйста введите пароль.</div>
+                </div>
+                <div class="form-group">
+                    <h5 for="Password">Повтор пароля:</h5>
+                    <input type="password" class="form-control" name="ConfirmPassword" required checktype="checkpassword">
+                    <div class="invalid-feedback">Пожалуйста подтвердите пароль.</div>
+                </div>
+                <button type="button" onclick="send_form('register_form', '/Account/Register', createRegister)">Регистрация</button>
+            </form>
+        </div>
+    </div>
+</div>

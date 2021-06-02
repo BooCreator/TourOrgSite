@@ -1,0 +1,123 @@
+﻿.single-item {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.single-item .data {
+    padding: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ccc;
+    border-radius: .25rem;
+    -webkit-border-radius: .25rem;
+    -moz-border-radius: .25rem;
+    -ms-border-radius: .25rem;
+    -o-border-radius: .25rem;
+}
+
+.single-item .data div {
+    padding: 12px;
+}
+
+.single-item .data p {
+    padding: 0;
+}
+
+.single-item .data .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.single-item .data .subtitle {
+    font-size: 18px;
+    color: gray;
+}
+
+.single-item .data .text {
+    text-align: justify;
+}
+
+.single-item .data .item-map iframe {
+    width: 100%;
+    height: 100%;
+    border-style: none;
+    border-radius: .25rem;
+    -webkit-border-radius: .25rem;
+    -moz-border-radius: .25rem;
+    -ms-border-radius: .25rem;
+    -o-border-radius: .25rem;
+}
+
+.single-item .data .menu {
+    width: auto;
+}
+
+.single-item .data .menu button {
+    min-width: 180px;
+}
+
+/* -------------------------------- images */
+
+.single-item .images {
+    padding-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.single-item .images img {
+   width: 25%;
+   min-width: 200px;
+   padding: 6px 1%;
+   transition-duration: .2s;
+   cursor: zoom-in;
+}
+
+.single-item .images img:hover {
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+}
+
+/* -------------------------------- list */
+
+.single-item .list>.title {
+   font-size: 24px;
+   font-weight: bold;
+}
+
+.single-item .list .items {
+    width: 100%;
+}
+
+.single-item .list .items .item {
+    border-style: solid none solid none;
+    border-width: 1px;
+    border-color: #ccc;
+}
+
+.single-item .list .items .item * {
+    margin: 0;
+}
+
+.single-item .list .items .item p {
+    padding: 4px 0;
+}
+
+.single-item .list .items .item a {
+    text-decoration: none;
+    transition-duration: .2s;
+    width: 100%;
+    padding: 4px 0;
+}
+
+.single-item .list .items .item a:hover {
+    color: orange;
+}

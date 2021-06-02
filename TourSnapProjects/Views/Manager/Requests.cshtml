@@ -1,0 +1,14 @@
+﻿@{
+    Int32 UserID = (this.ViewBag.UserID == null) ? -1 : this.ViewBag.UserID;
+    Int32 UserRole = (this.ViewBag.UserRole == null) ? -1 : this.ViewBag.UserRole;
+}
+
+<div class="work-body">
+    @if(UserRole != Global.ManagerRoleID)
+    {
+        <h2>Доступ запрещён!</h2>
+    } else
+    {
+
+    }
+</div>

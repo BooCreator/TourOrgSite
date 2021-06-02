@@ -1,0 +1,107 @@
+﻿@using TourSnapModels.Models.Data;
+@using TourSnapProjects.Models.Admin;
+
+@{
+    Int32 UserID = (this.ViewBag.UserID == null) ? -1 : this.ViewBag.UserID;
+    Int32 UserRole = (this.ViewBag.UserRole == null) ? -1 : this.ViewBag.UserRole;
+
+    List<Otel> Otels = (this.ViewBag.Otels == null) ? new List<Otel>() : this.ViewBag.Otels;
+
+    List<TourData> Items = (this.ViewBag.Items == null) ? new List<TourData>() : this.ViewBag.Items;
+}
+
+<div class="work-buttons">
+    @if(UserRole == Global.AdminRoleID)
+    {
+        <div class="items cols-5">
+            <button onclick="location.href='/Admin/Countries'">
+                <i class="fas fa-map-marked-alt"></i>
+                Страны
+            </button>
+            <button onclick="location.href='/Admin/Curorts'">
+                <i class="fas fa-umbrella-beach"></i>
+                Курорты
+            </button>
+            <button onclick="location.href='/Admin/Hotels'">
+                <i class="fas fa-concierge-bell"></i>
+                Отели
+            </button>
+            <button class="active">
+                <i class="fas fa-suitcase-rolling"></i>
+                Туры
+            </button>
+            <button onclick="location.href='/Admin/FireTours'">
+                <i class="fab fa-gripfire"></i>
+                Горящие туры
+            </button>
+        </div>
+    }
+</div>
+
+<div class="work-body" id="tours_form">
+    @if(UserRole != Global.AdminRoleID)
+    {
+        <h2>Доступ запрещён!</h2>
+    } else
+    {
+        <div class="fields">
+            <div class="line">
+                <p class="label">ИД:</p>
+                <input type="text" class="form-control" id="IdField" readonly value="-1">
+            </div>
+            <div class="line">
+                <p class="label">Название:</p>
+                <input type="text" class="form-control" id="TitleField" placeholder="Введите название тура..." checktype="text" onblur="check(this, this)">
+            </div>
+            <div class="line">
+                <p class="label">Отель:</p>
+                <select class="form-control" id="HotelField">
+                    @foreach(Otel Item in Otels)
+                    {
+                        <option value="@Item.ID">@Item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="line">
+                <p class="label">Количество дней:</p>
+                <input type="text" class="form-control" id="DaysField" placeholder="Введите количество дней тура..." checktype="number" onblur="check(this, this)">
+            </div>
+            <div class="line">
+                <p class="label">Дата начала тура:</p>
+                <input type="date" class="form-control" id="DateField">
+            </div>
+            <div class="line">
+                <p class="label">Цена:</p>
+                <input type="text" class="form-control" id="PriceField" placeholder="Введите цену тура..." checktype="float" onblur="check(this, this)">
+            </div>
+            <div class="line">
+                <p class="label">Фотография:</p>
+                <input type="text" class="form-control" id="PhotoField" placeholder="Введите путь к фотографии тура на сервере...">
+            </div>
+            <div class="line">
+                <p class="label">Описание:</p>
+                <textarea class="form-control" id="TextField" placeholder="Введите описание тура..." maxlength="1024"></textarea>
+            </div>
+            <div class="line">
+                <p class="label"></p>
+                <button onclick="send_form('tours_form', '/Admin/SaveTour', createTour)">Сохранить</button>
+                <button onclick="RemoveElem('IdField','/Admin/RemoveTour')">Удалить</button>
+            </div>
+        </div>
+        <div class="items">
+            <div class="list-group">
+                <button type="button" class="active" onclick="LoadTour(-1, this)">Новый...</button>
+                @foreach(TourData Item in Items)
+                {
+                    <button type="button" onclick="LoadTour(@Item.ID, this)">
+                        @if(Item.IsFire)
+                        {
+                            <i class="fab fa-gripfire"></i>
+                        }
+                        &nbsp; @Item.Title (@Item.Date)
+                    </button>
+                }
+            </div>
+        </div>
+    }
+</div>

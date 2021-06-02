@@ -1,0 +1,59 @@
+﻿@using TourSnapProjects.Models;
+
+@{
+    Int32 ActivePage = (this.ViewBag.MenuActivePage == null) ? 0 : this.ViewBag.MenuActivePage;
+
+    List<MenuPage> Items = (this.ViewBag.MainMenu == null) ? new List<MenuPage>() : this.ViewBag.MainMenu;
+}
+
+<div class="menu">
+    <nav class="navbar navbar-expand-lg">
+        <div class="sz-block">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                    @foreach(var Item in Items)
+                    {
+                        if(Item.SubItems.Count == 0)
+                        {
+                            <li class="nav-item">
+                                @if(Item.ID == ActivePage)
+                                {
+                                    <a class="nav-link active" href="@Item.Href">@Item.Title</a>
+                                } else
+                                {
+                                    <a class="nav-link" href="@Item.Href">@Item.Title</a>
+                                }
+                            </li>
+                        } else
+                        {
+                            <li class="nav-item dropdown">
+                                <div class="dropdown-content">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @Item.Title
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @foreach(var SunItem in Item.SubItems)
+                                        {
+                                            if(SunItem.ID == ActivePage)
+                                            {
+                                                <a class="dropdown-item active" href="@SunItem.Href">@SunItem.Title</a>
+                                            } else
+                                            {
+                                                <a class="dropdown-item" href="@SunItem.Href">@SunItem.Title</a>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
